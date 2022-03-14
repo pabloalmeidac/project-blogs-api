@@ -7,9 +7,9 @@ module.exports = async (req, res, next) => {
     if (!token) return res.status(401).json({ message: 'Token not found' });
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-    req.user = decoded.payload;
-
+    
+    req.user = decoded;
+    
     next();
   } catch (error) {
     if (error.name.includes('Token')) {
