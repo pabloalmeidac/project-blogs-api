@@ -46,4 +46,16 @@ const getById = async (req, res, next) => {
   }
 };
 
-module.exports = { create, getAll, getById };
+const exclude = async (req, res, next) => {
+  try {
+    const { id } = req.user;
+    
+    await userServices.exclude(id);
+  
+    return res.status(204).end();
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { create, getAll, getById, exclude };
