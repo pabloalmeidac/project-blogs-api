@@ -2,9 +2,9 @@ const { Users } = require('../models');
 
 const create = async (user) => {
   const { email } = user;
-  console.log(email);
 
   const emailExists = await Users.findOne({ where: { email } });
+
   if (emailExists) {
     emailExists.err = 'User already registered';
     emailExists.code = 409;
@@ -14,4 +14,10 @@ const create = async (user) => {
   return newUser;
 };
 
-module.exports = { create };
+const getAll = async () => {
+  const usersList = await Users.findAll();
+  
+  return usersList;
+};
+
+module.exports = { create, getAll };
