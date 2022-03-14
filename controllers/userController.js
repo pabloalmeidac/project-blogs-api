@@ -30,4 +30,20 @@ const getAll = async (_req, res, next) => {
   }
 };
 
-module.exports = { create, getAll };
+const getById = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const listById = await userServices.getById(id);
+
+    if (listById.err) {
+      const { code, err } = listById;
+      return res.status(code).json({ message: err });
+    }
+    
+    return res.status(200).json(listById);
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { create, getAll, getById };
