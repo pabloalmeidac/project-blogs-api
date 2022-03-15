@@ -22,9 +22,11 @@ const Attributes = {
   },
   published: {
     type: DataTypes.DATE,
+    defaultValue: DataTypes.NOW,
   },
   updated: {
     type: DataTypes.DATE,
+    defaultValue: DataTypes.NOW,
   },
 };
 
