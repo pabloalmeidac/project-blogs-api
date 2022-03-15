@@ -18,4 +18,16 @@ const create = async (req, res, next) => {
   }
 };
 
-module.exports = { create };
+const getAll = async (req, res, next) => {
+  try {
+    const { id } = req.user;
+
+    const listAll = await postServices.getAll(id);
+    
+    return res.status(200).json(listAll);
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { create, getAll };
