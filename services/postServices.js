@@ -22,7 +22,7 @@ const create = async (post) => {
   await 
   Promise.all(categoryIds.map((postId) => PostCategory.create({ postId, categoryd: newPost.id })));
   
-  return newPost;
+  return { id: newPost.id, title, content, userId };
 };
 
 const getAll = async (id) => {
@@ -42,4 +42,21 @@ const getAll = async (id) => {
   return postsList;
 };
 
-module.exports = { create, getAll };
+const getById = async (id) => {
+  const postsList = await BlogPost.findOne({ 
+    where: { id }, 
+    include: [{
+      model: Users,
+      as: 'user',
+      attributes: { exclude: ['password'] },
+    },
+    {
+      model: Category,
+      as: 'categories',
+      through: { attributes: [] },
+    }],
+  });
+  return postsList;
+};
+
+module.exports = { create, getAll, getById };
