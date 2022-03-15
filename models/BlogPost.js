@@ -21,18 +21,16 @@ const Attributes = {
     field: 'user_id',
   },
   published: {
-    allowNull: false,
     type: DataTypes.DATE,
   },
   updated: {
-    allowNull: false,
     type: DataTypes.DATE,
   },
 };
 
 module.exports = (sequelize) => {
   const BlogPost = sequelize.define(
-    'BlogPost', Attributes, { underscored: true, tableName: 'BlogPosts' },
+    'BlogPost', Attributes, { timestamps: false, underscored: true, tableName: 'BlogPosts' },
   );
 
   BlogPost.associate = (models) => {
