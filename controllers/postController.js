@@ -44,4 +44,20 @@ const getById = async (req, res, next) => {
   }
 };
 
-module.exports = { create, getAll, getById };
+const update = async (req, res, next) => {
+  try {
+    const { title, content } = req.body;
+    const { id } = req.params;
+    const userId = req.user.id;
+    
+    const postUpdated = await postServices.update(title, content, id, userId);
+    
+    if (!postUpdated) res.status(401).json({ message: 'Unauthorized user' });
+    
+    return res.status(200).json(postUpdated);
+  } catch (error) {
+    next();
+  }
+};
+
+module.exports = { create, getAll, getById, update };

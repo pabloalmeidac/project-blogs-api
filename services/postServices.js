@@ -59,4 +59,16 @@ const getById = async (id) => {
   return postsList;
 };
 
-module.exports = { create, getAll, getById };
+const update = async (title, content, id, userId) => {
+  await BlogPost.update({ title, content }, { where: { id, userId } });
+  
+  const postUpdated = await BlogPost.findOne({ 
+    where: { id, userId },
+    attributes: { exclude: ['id', 'published', 'updated'] },
+    include: [{ model: Category, as: 'categories', through: { attributes: [] } }],
+  });
+  
+  return postUpdated; // retorna null se nao tiver o post do id
+};
+
+module.exports = { create, getAll, getById, update };

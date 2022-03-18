@@ -32,7 +32,7 @@ const Attributes = {
 
 module.exports = (sequelize) => {
   const BlogPost = sequelize.define(
-    'BlogPost', Attributes, { timestamps: false, underscored: true, tableName: 'BlogPosts' },
+    'BlogPost', Attributes, { timestamps: false, tableName: 'BlogPosts' },
   );
 
   BlogPost.associate = (models) => {

@@ -1,12 +1,15 @@
 const express = require('express');
 const validatePost = require('../middlewares/validatePost');
-const { create, getAll, getById } = require('../controllers/postController');
+const validateEditPost = require('../middlewares/validateEditPost');
+
+const { create, getAll, getById, update } = require('../controllers/postController');
 const auth = require('../middlewares/auth');
 
 const router = express.Router();
 
-router.post('/', validatePost, auth, create);
+router.post('/', auth, validatePost, create);
 router.get('/', auth, getAll);
 router.get('/:id', auth, getById);
+router.put('/:id', auth, validateEditPost, update);
 
 module.exports = router;
