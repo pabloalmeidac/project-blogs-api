@@ -1,9 +1,14 @@
+const Sequelize = require('sequelize');
 const { BlogPost } = require('../models');
 const { Category } = require('../models');
 const { PostCategory } = require('../models');
 const { Users } = require('../models');
+const config = require('../config/config');
+
+const sequelize = new Sequelize(config.development);
 
 const create = async (post) => {
+  const t = await sequelize.transaction();
   const { title, content, categoryIds, userId } = post;
 
   const categoriesExists = await Category.findAll(); // pego esse obj do banco
@@ -17,11 +22,15 @@ const create = async (post) => {
     return idNotFound;
   }
   
-  const newPost = await BlogPost.create({ title, content, userId });
+  const newPost = await BlogPost.create({ title, content, userId }, { transaction: t });
+
   // cada categoria dentro do array vai ser criada
   await 
-  Promise.all(categoryIds.map((postId) => PostCategory.create({ postId, categoryd: newPost.id })));
-  
+  Promise.all(categoryIds.map((id) => PostCategory
+  .create({ postId: newPost.id, categoryId: id }, { transaction: t }))); 
+
+  await t.commit();
+  /* PostCategory.create({ postid, id }) */
   return { id: newPost.id, title, content, userId };
 };
 
