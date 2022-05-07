@@ -11,13 +11,23 @@ Construir um back-end usando `ORM` com o pacote `sequelize` do `npm`, e sendo ca
  - Construir endpoints para consumir os models que criar 
  - Fazer um `CRUD` com o `ORM`
 
-# Exemplos
-
+# API construida para:
+*Criar e manipular um banco de dados MySQL para armazenar todos os dados;
+* Criar um novo usuario no banco de dados
+* Criar uma nova categoria de post
+* Criar um novo post
+* Listar todos os usuarios
+* Listar todas as categorias
+* Listar todos os posts com suas respectivas categorias e usuario
+* Editar um post
+* Deletar um usuario
+* Validação do corpo das requisições
+* Autentificar usuario 
 
 # Instruções para rodar localmente:
 
 1. Clone o repositório
-  * `git clone `.
+  * `git clone git@github.com:pabloalmeidac/project-blogs-api.git`.
   * Entre na pasta do repositório que você acabou de clonar:
     * `cd sd-015-a-project-blogs-api`
 
@@ -31,13 +41,13 @@ Construir um back-end usando `ORM` com o pacote `sequelize` do `npm`, e sendo ca
   * Preencha os valores das variaveis que estão no arquivo para que a API funcione corretamente.
 
 # Tecnologias utilizadas
-  * Nodejs
-  * Javascript
-  * Express
-  * Sequelize
-  * Jwt
-  * MySQL
-  * Dotenv
+  * `Nodejs`
+  * `Javascript`
+  * `Express`
+  * `Sequelize`
+  * `Jwt`
+  * `MySQL`
+  * `Dotenv`
   
 # Autor
   Pablo Almeida
