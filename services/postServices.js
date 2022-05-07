@@ -30,7 +30,7 @@ const create = async (post) => {
   .create({ postId: newPost.id, categoryId: id }, { transaction: t }))); 
 
   await t.commit();
-  /* PostCategory.create({ postid, id }) */
+ 
   return { id: newPost.id, title, content, userId };
 };
 
