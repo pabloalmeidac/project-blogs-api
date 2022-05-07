@@ -40,6 +40,8 @@ Construir um back-end usando `ORM` com o pacote `sequelize` do `npm`, e sendo ca
    
   * Preencha os valores das variaveis que estão no arquivo para que a API funcione corretamente.
 
+4. Para iniciar a api é só rodar o comando:
+  * `npm run start`
 # Tecnologias utilizadas
   * `Nodejs`
   * `Javascript`
