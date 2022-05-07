@@ -49,6 +49,7 @@ Construir um back-end usando `ORM` com o pacote `sequelize` do `npm`, e sendo ca
   * `Sequelize`
   * `Jwt`
   * `MySQL`
+  * `Joi`
   * `Dotenv`
   
 # Autor
