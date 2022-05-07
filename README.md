@@ -34,12 +34,15 @@ Construir um back-end usando `ORM` com o pacote `sequelize` do `npm`, e sendo ca
 2. Instale as dependências 
   * `npm install`
 
-3. O projeto utiliza biblioteca `dotenv` e precisa ser configurado pra utilizar as variaveis de ambiente.
 
-  * Renomeie o arquivo `env.example` para `.env`
-   
-  * Preencha os valores das variaveis que estão no arquivo para que a API funcione corretamente.
+3. Para a api funcionar corretamente, na raiz do projeto **renomeie o arquivo `.env.example` para `.env`** com as variáveis de ambiente. Por exemplo, caso o seu usuário SQL seja `nome` e a senha `1234` seu arquivo ficará desta forma:
 
+```sh
+MYSQL_HOSTNAME=localhost
+MYSQL_USER=nome
+MYSQL_PASSWORD=1234
+JWT_SECRET=segredo
+```
 4. Para iniciar a api é só rodar o comando:
   * `npm run start`
 # Tecnologias utilizadas
