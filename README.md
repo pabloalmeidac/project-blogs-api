@@ -4,25 +4,25 @@ Este repositório foi criado para colocar em prática os conhecimentos adquirido
 
 O objetivo do projeto foi construir uma API de um CRUD posts de blog (com o Sequelize), onde foram desenvolvidos alguns endpoints (seguindo os princípios do REST) que estão conectados ao banco de dados.
 
+# API construida para:
+* Criar e manipular um banco de dados MySQL para armazenar todos os dados;
+* Criar um novo usuario no banco de dados;
+* Criar uma nova categoria de post;
+* Criar um novo post;
+* Listar todos os usuarios;
+* Listar todas as categorias;
+* Listar todos os posts com suas respectivas categorias e usuario;
+* Editar um post;
+* Deletar um usuario;
+* Validação do corpo das requisições;
+* Autentificar usuario;
+
 # Habilidades adquiridas
 
 Construir um back-end usando `ORM` com o pacote `sequelize` do `npm`, e sendo capaz de:
- - Criar e associar tabelas usando `models` do `sequelize`
- - Construir endpoints para consumir os models que criar 
- - Fazer um `CRUD` com o `ORM`
-
-# API construida para:
-*Criar e manipular um banco de dados MySQL para armazenar todos os dados;
-* Criar um novo usuario no banco de dados
-* Criar uma nova categoria de post
-* Criar um novo post
-* Listar todos os usuarios
-* Listar todas as categorias
-* Listar todos os posts com suas respectivas categorias e usuario
-* Editar um post
-* Deletar um usuario
-* Validação do corpo das requisições
-* Autentificar usuario 
+ - Criar e associar tabelas usando `models` do `sequelize`.
+ - Construir endpoints para consumir os models criados. 
+ - Fazer um `CRUD` com o `ORM`.
 
 # Instruções para rodar localmente:
 
