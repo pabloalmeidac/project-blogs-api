@@ -1,10 +1,10 @@
-# Projeto Blogs API
+# Blogs API
 
 Este repositório foi criado para colocar em prática os conhecimentos adquiridos no curso de Desenvolvimento Web da Trybe de um projeto do bloco de Back-end.
 
-O objetivo do projeto foi construir uma API de um CRUD posts de blog (com o Sequelize), onde foram desenvolvidos alguns endpoints (seguindo os princípios do REST) que estão conectados ao banco de dados.
+# Objetivo do projeto:
+O objetivo do projeto foi construir uma API de um CRUD posts de blog (com o Sequelize), onde foram desenvolvidos alguns endpoints (seguindo os princípios do REST) que estão conectados ao banco de dados, sendo responsavel por:
 
-# API construida para:
 * Criar e manipular um banco de dados MySQL para armazenar todos os dados;
 * Criar um novo usuario no banco de dados;
 * Criar uma nova categoria de post;
@@ -17,7 +17,7 @@ O objetivo do projeto foi construir uma API de um CRUD posts de blog (com o Sequ
 * Validação do corpo das requisições;
 * Autentificar usuario;
 
-# Habilidades adquiridas
+# Conhecimentos adquiridos
 
 Construir um back-end usando `ORM` com o pacote `sequelize` do `npm`, e sendo capaz de:
  - Criar e associar tabelas usando `models` do `sequelize`.
@@ -29,7 +29,7 @@ Construir um back-end usando `ORM` com o pacote `sequelize` do `npm`, e sendo ca
 1. Clone o repositório
   * `git clone git@github.com:pabloalmeidac/project-blogs-api.git`.
   * Entre na pasta do repositório que você acabou de clonar:
-    * `cd sd-015-a-project-blogs-api`
+    * `project-blogs-api`
 
 2. Instale as dependências 
   * `npm install`
