@@ -1,0 +1,619 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "API de postagem de blog",
+    "description": "Ojetivo foi criar uma api seguindo os princípios do REST",
+    "contact": {
+      "email": "pabloalmeidacti@gmail.com"
+    }
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags":[
+    {
+      "name": "user",
+      "description": "Tudo sobre usuarios"
+    },
+    {
+      "name": "login",
+      "description": "Tudo sobre login"
+    },
+    {
+      "name": "categories",
+      "description": "Tudo sobre categorias"
+    },
+    {
+      "name": "post",
+      "description": "Tudo sobre posts"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/user/": {
+      "post": {
+        "tags": [
+          "user"
+          ],
+        "summary":"Adiciona um novo usuario",
+        "description": "Rota responsável por cadastrar um novo usuario",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/schemas/User"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "$ref": "#/definitions/responses/OK",
+            "schema": {
+              "$ref": "#/definitions/schemas/UserToken"
+            }
+          },
+          "400": {
+            "$ref": "#/definitions/responses/InvalidBody"
+          },
+          "409": {
+            "description": "Usuario já existe"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "user"
+          ],
+        "summary":"Lista os usuarios",
+        "description": "Rota responsável por listar todos os usuarios",
+        "security": [{ "Authorization": [] }],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/definitions/responses/OK",
+            "schema": {
+              "$ref": "#/definitions/schemas/AllUsers"
+            }
+          },
+          "401": {
+            "$ref": "#/definitions/responses/InvalidToken"
+          },
+          "404": {
+            "$ref": "#/definitions/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/user/{id}": {
+      "get": {
+        "tags": [
+          "user"
+          ],
+        "security": [{ "Authorization": [] }],
+        "summary":"Lista um usuario pelo ID",
+        "description": "Rota responsável por listar o usuario pelo seu ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/definitions/responses/OK",
+            "schema": {
+              "$ref": "#/definitions/schemas/User"
+            }
+          },
+          "401": {
+            "$ref": "#/definitions/responses/InvalidToken"
+          },
+          "404": {
+            "$ref": "#/definitions/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/user/me": {
+      "delete": {
+        "tags": [
+          "user"
+          ],
+        "security": [{ "Authorization": [] }],
+        "summary":"Deleta um usuario pelo ID",
+        "description": "Rota responsável por deletar o usuario pelo seu ID",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Sem conteúdo"
+          },
+          "401": {
+            "$ref": "#/definitions/responses/InvalidToken"
+          }
+        }
+      }
+    },
+    "/login/": {
+      "post": {
+        "tags": [
+          "login"
+          ],
+          "summary":"Login do usuario",
+          "description": "Rota responsável por fazer o login do usuario",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/schemas/Login"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "$ref": "#/definitions/responses/OK",
+            "schema": {
+              "$ref": "#/definitions/schemas/UserToken"
+            }
+          },
+          "400": {
+            "$ref": "#/definitions/responses/InvalidBody"
+          }
+        }
+      }
+    },
+    "/categories/": {
+      "post": {
+        "tags": [
+          "categories"
+          ],
+        "security": [{ "Authorization": [] }],
+        "summary":"Adiciona uma nova categoria",
+        "description": "Rota responsável por cadastrar uma nova categoria",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/schemas/NewCategory"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "$ref": "#/definitions/responses/OK",
+            "schema": {
+              "$ref": "#/definitions/schemas/Category"
+            }
+          },
+          "400": {
+            "$ref": "#/definitions/responses/InvalidBody"
+          },
+          "401": {
+            "$ref": "#/definitions/responses/InvalidToken"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "categories"
+          ],
+        "security": [{ "Authorization": [] }],
+        "summary":"Lista as categorias",
+        "description": "Rota responsável por listar as categorias",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/definitions/responses/OK",
+            "schema": {
+              "$ref": "#/definitions/schemas/AllCategoryes"
+            }
+          },
+          "401": {
+            "$ref": "#/definitions/responses/InvalidToken"
+          }
+        }
+      }
+    },
+    "/post/": {
+      "post": {
+        "tags": [
+          "post"
+          ],
+        "security": [{ "Authorization": [] }],
+        "summary":"Adiciona um novo post",
+        "description": "Rota responsável por cadastrar um novo post",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/schemas/NewPost"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "$ref": "#/definitions/responses/OK",
+            "schema": {
+              "$ref": "#/definitions/schemas/NewPostResponse"
+            }
+          },
+          "400": {
+            "$ref": "#/definitions/responses/InvalidBody"
+          },
+          "401": {
+            "$ref": "#/definitions/responses/InvalidToken"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "post"
+          ],
+          "security": [{ "Authorization": [] }],
+          "summary":"Lista os todos os posts",
+          "description": "Rota responsável por listar todos os posts",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/definitions/responses/OK",
+            "schema": {
+              "$ref": "#/definitions/schemas/AllPost"
+            }
+          },
+          "400": {
+            "$ref": "#/definitions/responses/InvalidBody"
+          },
+          "401": {
+            "$ref": "#/definitions/responses/InvalidToken"
+          }
+        }
+      }
+    },
+    "/post/{id}": {
+      "get": {
+        "tags": [
+          "post"
+        ],
+        "security": [{ "Authorization": [] }],
+        "summary":"Lista post pelo seu ID",
+        "description": "Rota responsável por listar um post pelo seu ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/definitions/responses/OK",
+            "schema": {
+              "$ref": "#/definitions/schemas/Post"
+            }
+          },
+          "400": {
+            "$ref": "#/definitions/responses/InvalidBody"
+          },
+          "401": {
+            "$ref": "#/definitions/responses/InvalidToken"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "post"
+        ],
+        "security": [{ "Authorization": [] }],
+        "summary":"Atualiza um post pelo seu ID",
+        "description": "Rota responsável por atualizar um post pelo seu ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/schemas/EditPost"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/definitions/responses/OK",
+            "schema": {
+              "$ref": "#/definitions/schemas/EditPostResponse"
+            }
+          },
+          "400": {
+            "$ref": "#/definitions/responses/InvalidBody"
+          },
+          "401": {
+            "$ref": "#/definitions/responses/InvalidToken"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "displayName": {
+            "type": "string",
+            "example": "Brett Wiltshire"
+          },
+          "email":{
+            "type": "string",
+            "example": "brett@email.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "123456"
+          },
+          "image": {
+            "type": "string",
+            "example": "http://4.bp.blogspot.com/_YA50adQ-7vQ/S1gfR_6ufpI/AAAAAAAAAAk/1ErJGgRWZDg/S45/brett.png"
+          }
+        }
+      },
+      "UserToken": {
+        "type":"object",
+        "properties": {
+          "token": {
+            "type":"string",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7ImlkIjo1LCJkaXNwbGF5TmFtZSI6InVzdWFyaW8gZGUgdGVzdGUiLCJlbWFpbCI6InRlc3RlQGVtYWlsLmNvbSIsImltYWdlIjoibnVsbCJ9LCJpYXQiOjE2MjAyNDQxODcsImV4cCI6MTYyMDY3NjE4N30.Roc4byj6mYakYqd9LTCozU1hd9k_Vw5IWKGL4hcCVG8"
+          }
+        }
+      }, 
+      "AllUsers": {
+        "type":"array",
+        "items": {
+          "$ref": "#/definitions/schemas/User"
+        }
+      },
+      "Login": {
+        "type":"object",
+        "properties": {
+          "email": {
+            "type":"string",
+            "example": "email@mail.com"
+          },
+          "password": {
+            "type":"string",
+            "example": "123456"
+          }
+        }
+      },
+      "NewCategory": {
+        "type":"object",
+        "properties": {
+          "name": {
+            "type":"string",
+            "example": "Inovação"
+          }
+        }
+      },
+      "Category": {
+        "type":"object",
+        "properties": {
+          "id": {
+            "type":"number",
+            "example": 1
+          },
+          "name": {
+            "type":"string",
+            "example": "Inovação"
+          }
+        }
+      },
+      "AllCategoryes": {
+        "type":"array",
+        "items": {
+          "$ref": "#/definitions/schemas/Category"
+        }
+      },
+      "NewPost": {
+        "type":"object",
+        "properties": {
+          "title": {
+            "type":"string",
+            "example": "Latest updates, August 1st"
+          },
+          "content": {
+            "type":"string",
+            "example": "The whole text for the blog post goes here in this key"
+          },
+          "categoryIds": {
+            "type":"array",
+            "example": [1, 2]
+          }
+        }
+      },
+      "NewPostResponse": {
+        "type":"object",
+        "properties": {
+          "id": {
+            "type":"number",
+            "example": 1
+          },
+          "title": {
+            "type":"string",
+            "example": "Latest updates, August 1st"
+          },
+          "content": {
+            "type":"string",
+            "example": "The whole text for the blog post goes here in this key"
+          },
+          "categoryIds": {
+            "type":"array",
+            "example": [1, 2]
+          }
+        }
+      },
+      "Post": {
+        "type":"object",
+        "properties": {
+          "id": {
+            "type":"number",
+            "example": 1
+          },
+          "title": {
+            "type":"string",
+            "example": "Post do Ano"
+          },
+          "userId": {
+            "type":"number",
+            "example": 1
+          },
+          "published": {
+            "type":"string",
+            "example": "2011-08-01T19:58:00.000Z"
+          },
+          "user": {
+            "type":"object",
+            "example": {
+              "id": 1, 
+              "displayName": "Lewis Hamilton", 
+              "email": "lewishamilton@gmail.com", 
+              "image": "https://upload.wikimedia.org/wikipedia/commons/1/18/Lewis_Hamilton_2016_Malaysia_2.jpg"
+            }
+          },
+          "categories": {
+            "type":"array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type":"number",
+                  "example": 1
+                }, 
+                "name": {
+                  "type":"string",
+                  "example": "Inovação"
+                }
+              }
+            }
+          }
+        }
+      },
+      "AllPost": {
+        "type":"array",
+        "items": {
+          "$ref": "#/definitions/schemas/Post"
+        }
+      },
+      "EditPost": {
+        "type":"object",
+        "properties": {
+          "title": {
+            "type":"string",
+            "example": "Esse é um titulo"
+          },
+          "content": {
+            "type":"string",
+            "example": "Esse é um conteudo"
+          }
+        }
+      },
+      "EditPostResponse": {
+        "type":"object",
+        "properties": {
+          "title": {
+            "type":"string",
+            "example": "Esse é um titulo"
+          },
+          "content": {
+            "type":"string",
+            "example": "Esse é um conteudo"
+          },
+          "userId": {
+            "type":"number",
+            "example": 1
+          },
+          "categories": {
+            "type":"array",
+            "example": [{"id": 1, "name": "inovação"}]
+          }
+        }
+      }
+    },
+    "responses": {
+      "OK": {
+        "description": "Requisição bem sucedida"
+      },
+      "NotFound": {
+        "description": "Informação não encontrada"
+      },
+      "InvalidToken": {
+        "description": "Token inválido"
+      },
+      "InvalidBody": {
+        "description": "Corpo da requisição inválido"
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Authorization": {
+      "type": "apiKey",
+      "name":"authorization",
+      "in": "header"
+    }
+  }
+}
