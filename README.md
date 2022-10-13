@@ -17,6 +17,14 @@ O objetivo do projeto foi construir uma API de um CRUD posts de blog (com o Sequ
 * Validação do corpo das requisições;
 * Autentificar usuario;
 
+# Documentação
+Foi utilizado o swagger para fazer a documentação do projeto.
+
+![doc](https://raw.githubusercontent.com/pabloalmeidac/project-blogs-api/pabloalmeidac-sd-015-a-project-blogs-api/doc.png)
+
+![endpoints](https://raw.githubusercontent.com/pabloalmeidac/project-blogs-api/pabloalmeidac-sd-015-a-project-blogs-api/endpoints.png)
+
+
 # Conhecimentos adquiridos
 
 Construir um back-end usando `ORM` com o pacote `sequelize` do `npm`, e sendo capaz de:
